@@ -1,11 +1,19 @@
 # =============================================================================
-# [Spotfire IronPython] 버튼 액션 스크립트 – 시작/종료 팝업
+# [Spotfire 14.0 IronPython] 버튼 액션 스크립트 – 시작/종료 팝업
 # =============================================================================
-# 설정 방법:
-#   1. Spotfire → Insert → Button
-#   2. 버튼 우클릭 → Edit Script
-#   3. Script Language: IronPython
-#   4. 아래 코드를 붙여넣기
+# 설정 방법 (Spotfire Analyst 14.0):
+#   버튼 추가:
+#     1. 메뉴 → Insert → Text Area  (새 텍스트 영역 생성)
+#     2. 텍스트 영역 우클릭 → Edit Text Area
+#     3. 텍스트 영역 편집 창 상단 도구모음 → Insert Action Control → Button
+#     4. 버튼 우클릭 → Properties
+#     5. [Actions 탭] → Add → Script
+#     6. Script Language: IronPython
+#     7. 아래 코드를 붙여넣기 → OK
+#
+# 주의 (Spotfire 14.0):
+#   - Script Language는 반드시 "IronPython" 선택 (Python 3.x 와 다름)
+#   - Application / Document 전역 객체는 import 없이 바로 사용 가능
 # =============================================================================
 
 from System.Windows.Forms import (
@@ -22,6 +30,7 @@ start_result = MessageBox.Show(
     MessageBoxIcon.Information
 )
 
+# ── 취소 시 안내 팝업 ────────────────────────────────────────────────────────
 if start_result == DialogResult.Cancel:
     MessageBox.Show(
         "분석이 취소되었습니다.",
