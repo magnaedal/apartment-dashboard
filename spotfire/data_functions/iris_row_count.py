@@ -2,20 +2,23 @@
 # [Spotfire 14.0 Data Function] Iris 데이터셋 행 수 계산
 # =============================================================================
 # 설정 방법 (Spotfire Analyst 14.0):
-#   1. 메뉴 → Insert → Data Function → New Data Function
+#
+#  [Step 1] 스크립트 등록 — Tools → Register Data Functions
+#   1. Tools → Register Data Functions → [New] 클릭
 #   2. Name: IrisRowCount
-#   3. Script Engine: Python 3.x  ← 14.0에서의 표기 (Python 3 선택)
-#   4. [Input Parameters] Add Parameter
-#      - Name: iris_data
-#      - Type: Table
-#      - Display name (선택): Iris Dataset
-#   5. [Output Parameters] Add Parameter
-#      - Name: result_table
-#      - Type: Table
-#   6. 아래 코드를 Script 영역에 붙여넣기 → OK
-#   7. 상단 메뉴 → Data → Data Function Properties 에서 매핑 확인:
-#      - iris_data  : Iris 테이블 선택
-#      - result_table: "Create new table" 선택 후 이름 지정 (예: Iris_Summary)
+#   3. Script Engine: Python 3.x
+#   4. 아래 코드를 Script 영역에 붙여넣기
+#   5. [Input Parameters] → Add:
+#      - Name: iris_data  /  Type: Table
+#   6. [Output Parameters] → Add:
+#      - Name: result_table  /  Type: Table
+#   7. [OK] 저장
+#
+#  [Step 2] 파라미터 매핑 — Data → Data Function Properties
+#   1. Data → Data Function Properties → IrisRowCount 선택
+#   2. Input  iris_data   → Iris 데이터 테이블 선택
+#   3. Output result_table → "New table" 선택, 이름: Iris_Summary
+#   4. [OK] → 함수 자동 실행되어 Iris_Summary 테이블 생성됨
 # =============================================================================
 # 참고 (Spotfire 14.0 Python 타입 매핑):
 #   pandas dtype int64   → Spotfire Integer
