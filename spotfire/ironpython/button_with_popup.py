@@ -16,6 +16,8 @@
 #   - Application / Document 전역 객체는 import 없이 바로 사용 가능
 # =============================================================================
 
+import clr
+clr.AddReference("System.Windows.Forms")
 from System.Windows.Forms import (
     MessageBox, MessageBoxButtons, MessageBoxIcon, DialogResult
 )

@@ -20,6 +20,8 @@
 #   - Document.Data.DataFunctions 로 등록된 Data Function 목록 조회
 # =============================================================================
 
+import clr
+clr.AddReference("System.Windows.Forms")
 from System.Windows.Forms import (
     MessageBox, MessageBoxButtons, MessageBoxIcon, DialogResult
 )
