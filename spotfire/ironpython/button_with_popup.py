@@ -18,34 +18,32 @@
 
 import clr
 clr.AddReference("System.Windows.Forms")
-from System.Windows.Forms import (
-    MessageBox, MessageBoxButtons, MessageBoxIcon, DialogResult
-)
+import System.Windows.Forms as Forms
 
 # ── 시작 팝업 ────────────────────────────────────────────────────────────────
-start_result = MessageBox.Show(
+start_result = Forms.MessageBox.Show(
     "Iris 데이터셋 분석을 시작합니다.\n\n"
     "데이터의 행 수를 계산하여 새 테이블에 저장합니다.\n\n"
     "계속하려면 [확인]을 클릭하세요.",
     "분석 시작",
-    MessageBoxButtons.OKCancel,
-    MessageBoxIcon.Information
+    Forms.MessageBoxButtons.OKCancel,
+    Forms.MessageBoxIcon.Information
 )
 
 # ── 취소 시 안내 팝업 ────────────────────────────────────────────────────────
-if start_result == DialogResult.Cancel:
-    MessageBox.Show(
+if start_result == Forms.DialogResult.Cancel:
+    Forms.MessageBox.Show(
         "분석이 취소되었습니다.",
         "취소",
-        MessageBoxButtons.OK,
-        MessageBoxIcon.Warning
+        Forms.MessageBoxButtons.OK,
+        Forms.MessageBoxIcon.Warning
     )
 # ── 종료 팝업 (확인 클릭 시) ─────────────────────────────────────────────────
 else:
-    MessageBox.Show(
+    Forms.MessageBox.Show(
         "분석이 완료되었습니다.\n\n"
         "결과가 새 테이블에 저장되었습니다.",
         "분석 완료",
-        MessageBoxButtons.OK,
-        MessageBoxIcon.Information
+        Forms.MessageBoxButtons.OK,
+        Forms.MessageBoxIcon.Information
     )

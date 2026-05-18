@@ -22,30 +22,28 @@
 
 import clr
 clr.AddReference("System.Windows.Forms")
-from System.Windows.Forms import (
-    MessageBox, MessageBoxButtons, MessageBoxIcon, DialogResult
-)
+import System.Windows.Forms as Forms
 
 # ── 설정: 등록된 Data Function 이름 ──────────────────────────────────────────
 DATA_FUNCTION_NAME = "IrisRowCount"
 
 # ── 시작 팝업 ────────────────────────────────────────────────────────────────
-start_result = MessageBox.Show(
+start_result = Forms.MessageBox.Show(
     "Iris 데이터셋 분석을 시작합니다.\n\n"
     "데이터의 행 수를 계산하여 새 테이블에 저장합니다.\n\n"
     "계속하려면 [확인]을 클릭하세요.",
     "분석 시작",
-    MessageBoxButtons.OKCancel,
-    MessageBoxIcon.Information
+    Forms.MessageBoxButtons.OKCancel,
+    Forms.MessageBoxIcon.Information
 )
 
 # ── 취소 처리 ────────────────────────────────────────────────────────────────
-if start_result == DialogResult.Cancel:
-    MessageBox.Show(
+if start_result == Forms.DialogResult.Cancel:
+    Forms.MessageBox.Show(
         "분석이 취소되었습니다.",
         "취소",
-        MessageBoxButtons.OK,
-        MessageBoxIcon.Warning
+        Forms.MessageBoxButtons.OK,
+        Forms.MessageBoxIcon.Warning
     )
 
 # ── Data Function 실행 (확인 클릭 시) ────────────────────────────────────────
@@ -54,8 +52,6 @@ else:
     error_msg = ""
 
     try:
-        # Spotfire 14.0: DataFunctionExecutorService import를 실행 시점에 수행
-        # (모듈 로드 실패 시 try 블록 안에서 처리하기 위함)
         from Spotfire.Dxp.Data.DataFunctions import DataFunctionExecutorService
 
         executor = Application.GetService[DataFunctionExecutorService]()
@@ -70,7 +66,7 @@ else:
             error_msg = (
                 "Data Function '{0}'을(를) 찾을 수 없습니다.\n\n"
                 "확인 사항:\n"
-                "  1. Insert → Data Function 에서 함수가 등록되어 있는지 확인\n"
+                "  1. Tools → Register Data Functions 에서 함수가 등록되어 있는지 확인\n"
                 "  2. DATA_FUNCTION_NAME 변수 값이 등록명과 일치하는지 확인"
             ).format(DATA_FUNCTION_NAME)
 
@@ -81,18 +77,18 @@ else:
 
     # ── 결과 팝업 ─────────────────────────────────────────────────────────────
     if error_msg:
-        MessageBox.Show(
+        Forms.MessageBox.Show(
             error_msg,
             "오류",
-            MessageBoxButtons.OK,
-            MessageBoxIcon.Error
+            Forms.MessageBoxButtons.OK,
+            Forms.MessageBoxIcon.Error
         )
     else:
-        MessageBox.Show(
+        Forms.MessageBox.Show(
             "분석이 완료되었습니다.\n\n"
             "Iris 데이터셋의 행 수가 계산되어\n"
             "새 테이블(Iris_Summary)에 저장되었습니다.",
             "분석 완료",
-            MessageBoxButtons.OK,
-            MessageBoxIcon.Information
+            Forms.MessageBoxButtons.OK,
+            Forms.MessageBoxIcon.Information
         )
